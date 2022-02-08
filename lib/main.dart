@@ -28,6 +28,11 @@ class MyHomePage extends StatelessWidget {
     Transaction(id: '5', title: 'bills', amount: 999.99, date: DateTime.now())
   ];
 
+  // String? titleInput;
+  // String? amountInput;
+  final titleController = TextEditingController();
+  final amountController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -42,9 +47,44 @@ class MyHomePage extends StatelessWidget {
               child: Container(
                 child: Text('CHART'),
                 width: double.infinity,
-                color: Colors.amber[300],
+                color: Colors.blue,
               ),
               elevation: 5,
+            ),
+            Card(
+              elevation: 5,
+              child: Container(
+                padding: EdgeInsets.all(10),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.end,
+                  children: [
+                    TextField(
+                      decoration: InputDecoration(labelText: 'Title'),
+                      controller: titleController,
+                      // onChanged: (value) {
+                      //   titleInput = value;
+                      // },
+                    ),
+                    TextField(
+                      decoration: InputDecoration(labelText: 'Amount'),
+                      controller: amountController,
+                      // onChanged: (value) {
+                      //   amountInput = value;
+                      // },
+                    ),
+                    Container(
+                      margin: EdgeInsets.all(2),
+                      child: TextButton(
+                        child: Text('Add Expense'),
+                        onPressed: () {
+                          print(titleController.text);
+                          print(amountController.text);
+                        },
+                      ),
+                    ),
+                  ],
+                ),
+              ),
             ),
             Column(
               children: transactions.map((transaction) {
