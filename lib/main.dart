@@ -2,6 +2,7 @@
 
 import 'package:expenses_app/transaction.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 
 void main() => runApp(MyApp());
 
@@ -21,9 +22,10 @@ class MyHomePage extends StatelessWidget {
         id: '1', title: 'new shoes', amount: 99.99, date: DateTime.now()),
     Transaction(id: '2', title: 'grocery', amount: 25.69, date: DateTime.now()),
     Transaction(
-        id: '3', title: 'new shirt', amount: 140.45, date: DateTime.now()),
-    Transaction(id: '4', title: 'grocery', amount: 44.99, date: DateTime.now()),
-    Transaction(id: '5', title: 'bills', amount: 9.99, date: DateTime.now())
+        id: '3', title: 'PS5 game', amount: 140.45, date: DateTime.now()),
+    Transaction(
+        id: '4', title: 'grocery', amount: 3044.99, date: DateTime.now()),
+    Transaction(id: '5', title: 'bills', amount: 999.99, date: DateTime.now())
   ];
 
   @override
@@ -50,13 +52,15 @@ class MyHomePage extends StatelessWidget {
                   child: Row(
                     children: [
                       Container(
+                        width: 80,
+                        alignment: Alignment.center,
                         margin:
                             EdgeInsets.symmetric(vertical: 10, horizontal: 15),
                         decoration: BoxDecoration(
                             border: Border.all(),
                             borderRadius: BorderRadius.circular(10)),
                         padding: EdgeInsets.all(5),
-                        child: Text(transaction.amount.toString(),
+                        child: Text('\$${transaction.amount}',
                             style: TextStyle(
                                 fontWeight: FontWeight.bold, fontSize: 15)),
                       ),
@@ -69,7 +73,7 @@ class MyHomePage extends StatelessWidget {
                                 fontWeight: FontWeight.bold, fontSize: 15),
                           ),
                           Text(
-                            transaction.date.toString(),
+                            DateFormat.yMMMd().format(transaction.date),
                             style: TextStyle(fontSize: 12),
                           ),
                         ],
