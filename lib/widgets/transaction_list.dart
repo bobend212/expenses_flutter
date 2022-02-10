@@ -19,7 +19,7 @@ class TransactionList extends StatelessWidget {
             child: Row(
               children: [
                 Container(
-                  width: 80,
+                  width: 85,
                   alignment: Alignment.center,
                   margin: EdgeInsets.symmetric(vertical: 10, horizontal: 15),
                   decoration: BoxDecoration(
@@ -36,12 +36,13 @@ class TransactionList extends StatelessWidget {
                   children: [
                     Text(
                       transactions[index].title,
-                      style:
-                          TextStyle(fontWeight: FontWeight.bold, fontSize: 15),
+                      style: TextStyle(
+                          fontWeight: FontWeight.normal, fontSize: 15),
                     ),
                     Text(
                       DateFormat.yMMMd().format(transactions[index].date),
-                      style: TextStyle(fontSize: 12),
+                      style:
+                          TextStyle(fontSize: 12, fontStyle: FontStyle.italic),
                     ),
                   ],
                 )
