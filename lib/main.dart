@@ -14,6 +14,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Flutter App',
+      theme: ThemeData(primarySwatch: Colors.indigo),
       home: MyHomePage(),
     );
   }
@@ -76,7 +77,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 child: Container(
                   child: Text('CHART'),
                   width: double.infinity,
-                  color: Colors.blue,
+                  //color: Theme.of(context).primaryColor,
                 ),
                 elevation: 5,
               ),

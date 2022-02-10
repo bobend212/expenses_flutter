@@ -3,12 +3,19 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
-class NewTransaction extends StatelessWidget {
-  final titleController = TextEditingController();
-  final amountController = TextEditingController();
+class NewTransaction extends StatefulWidget {
   final Function addTransaction;
 
   NewTransaction(this.addTransaction);
+
+  @override
+  State<NewTransaction> createState() => _NewTransactionState();
+}
+
+class _NewTransactionState extends State<NewTransaction> {
+  final titleController = TextEditingController();
+
+  final amountController = TextEditingController();
 
   void submitData() {
     final eneteredTitle = titleController.text;
@@ -16,7 +23,9 @@ class NewTransaction extends StatelessWidget {
 
     if (eneteredTitle.isEmpty || eneteredAmount <= 0) return;
 
-    addTransaction(eneteredTitle, eneteredAmount);
+    widget.addTransaction(eneteredTitle, eneteredAmount);
+
+    Navigator.of(context).pop();
   }
 
   @override
@@ -32,6 +41,7 @@ class NewTransaction extends StatelessWidget {
               decoration: InputDecoration(labelText: 'Title'),
               controller: titleController,
               onSubmitted: (_) => submitData(),
+              autofocus: true,
             ),
             TextField(
               decoration: InputDecoration(labelText: 'Amount'),
