@@ -15,7 +15,10 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Flutter App',
-      theme: ThemeData(primarySwatch: Colors.indigo, fontFamily: 'Montserrat'),
+      theme: ThemeData(
+          primarySwatch: Colors.indigo,
+          fontFamily: 'Montserrat',
+          errorColor: Colors.red[200]),
       home: MyHomePage(),
     );
   }
@@ -46,12 +49,13 @@ class _MyHomePageState extends State<MyHomePage> {
     }).toList();
   }
 
-  void _addNewTransaction(String txTitle, double txAmount) {
+  void _addNewTransaction(
+      String txTitle, double txAmount, DateTime chosenDate) {
     final newTransaction = Transaction(
         id: DateTime.now().toString(),
         title: txTitle,
         amount: txAmount,
-        date: DateTime.now());
+        date: chosenDate);
 
     setState(() {
       _userTransactions.add(newTransaction);
@@ -64,6 +68,14 @@ class _MyHomePageState extends State<MyHomePage> {
         builder: (_) {
           return NewTransaction(_addNewTransaction);
         });
+  }
+
+  void _deleteTransaction(String id) {
+    setState(() {
+      _userTransactions.removeWhere((element) {
+        return element.id == id;
+      });
+    });
   }
 
   @override
@@ -82,16 +94,8 @@ class _MyHomePageState extends State<MyHomePage> {
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
-              // Card(
-              //   child: Container(
-              //     child: Text('CHART'),
-              //     width: double.infinity,
-              //     //color: Theme.of(context).primaryColor,
-              //   ),
-              //   elevation: 5,
-              // ),
               Chart(_recentTransactions),
-              TransactionList(_userTransactions)
+              TransactionList(_userTransactions, _deleteTransaction)
             ]),
       ),
       floatingActionButton: Container(
