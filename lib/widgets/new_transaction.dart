@@ -1,7 +1,6 @@
-// ignore_for_file: prefer_const_constructors, avoid_print, use_key_in_widget_constructors
+// ignore_for_file: prefer_const_constructors, avoid_print, use_key_in_widget_constructors, prefer_const_constructors_in_immutables
 
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:intl/intl.dart';
 
 class NewTransaction extends StatefulWidget {
@@ -22,8 +21,9 @@ class _NewTransactionState extends State<NewTransaction> {
     final eneteredTitle = _titleController.text;
     final eneteredAmount = double.parse(_amountController.text);
 
-    if (eneteredTitle.isEmpty || eneteredAmount <= 0 || _selectedDate == null)
+    if (eneteredTitle.isEmpty || eneteredAmount <= 0 || _selectedDate == null) {
       return;
+    }
 
     widget.addTransaction(eneteredTitle, eneteredAmount, _selectedDate);
 
@@ -68,7 +68,7 @@ class _NewTransactionState extends State<NewTransaction> {
               keyboardType: TextInputType.number,
               onSubmitted: (_) => _submitData(),
             ),
-            Container(
+            SizedBox(
               height: 70,
               child: Row(
                 children: [

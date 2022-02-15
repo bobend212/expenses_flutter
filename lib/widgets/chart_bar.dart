@@ -1,3 +1,5 @@
+// ignore_for_file: prefer_const_constructors_in_immutables, use_key_in_widget_constructors, prefer_const_constructors
+
 import 'package:flutter/material.dart';
 
 class ChartBar extends StatelessWidget {
@@ -11,14 +13,14 @@ class ChartBar extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        Container(
+        SizedBox(
             height: 20,
             child: FittedBox(
                 child: Text('\$${spendingAmount.toStringAsFixed(0)}'))),
         SizedBox(
           height: 4,
         ),
-        Container(
+        SizedBox(
           height: 60,
           width: 10,
           child: Stack(
